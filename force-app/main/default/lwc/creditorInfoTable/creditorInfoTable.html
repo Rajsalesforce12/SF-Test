@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Creditor Table">  
+        <h3 slot="title"><b>Creditor Table</b></h3>
+        <template if:true={responseReceived}>
+            <template if:true={tableData}>
+                <div class="slds-box"> 
+                    <template if:true = {tableData}>  
+                        <lightning-datatable  
+                                             data={tableData} 
+                                             columns={cols} 
+                                             onrowselection={rowSelectionHandler}
+                                             onsave={onSaveHandler}
+                                             draft-values={draftValues}
+                                             key-field="id">  
+                        </lightning-datatable> 
+                        <div>
+                            <lightning-button-group>
+                                <lightning-button label = "Add Debt" onclick={addDebtHandler} variant="success"></lightning-button>
+                                <lightning-button label = "Remove Debt" onclick={removeDebtHandler} variant="destructive"></lightning-button>
+                            </lightning-button-group>
+                        </div>   
+                    </template>
+                    <div class="greeting-class" style="background-color:rgb(0, 153, 255);">
+                        <div>
+                            <h1 style="text-align:right;"><b>Total Checked Rows Balance:${totalBalance}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                            </h1>
+                        </div>
+                    </div>       
+                    <p><b>Total Row Count:{totalRowCount}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check Row Count : {selectedRowCount} </b></p>
+                </div> 
+                <template if:true={error}>
+                    {error}
+                </template>
+            </template>
+        </template>
+    </lightning-card>
+</template>
